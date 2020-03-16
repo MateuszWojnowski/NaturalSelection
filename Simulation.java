@@ -27,9 +27,9 @@ public class Simulation {
         return unitList;
     }
 
-    public static List moveAll (int mapWidth, int mapLength, List <Unit> unitList) {
+    public List moveAll (List <Unit> unitList) {
         for (int i = 0; i<unitList.size(); i++) {
-            unitList.get(i).move(mapWidth, mapLength);
+            unitList.get(i).move(this.mapWidth, this.mapLength);
             unitList.get(i).Attack(unitList);
         }
 
@@ -44,12 +44,13 @@ public class Simulation {
     }
 
     public void autostartMoveAll (List <Unit> unitList) {
-        List<Unit> livingUnits = Simulation.moveAll(this.mapWidth, this.mapLength, unitList);
+        List<Unit> livingUnits = new Simulation (this.mapWidth, this.mapLength, this.numberUnits).moveAll(unitList);
         while (livingUnits.size() > 1) {
-            livingUnits = Simulation.moveAll(this.mapWidth, this.mapLength, unitList);
+            livingUnits = new Simulation(this.mapWidth, this.mapLength, this.numberUnits).moveAll(unitList);
         }
         System.out.println("zostala jednostka nr "+livingUnits.get(0).getNr()+", o parametrach: " +
                 "sila-"+ livingUnits.get(0).getStrong()+", poczatkowe zdrowie-"+
                 livingUnits.get(0).getFirstHealth()+", predkosc-"+livingUnits.get(0).getSpeed());
     }
 }
+
