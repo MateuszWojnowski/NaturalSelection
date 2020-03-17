@@ -87,7 +87,7 @@ public class Unit {
         }
     }
 
-    public void Attack (List<Unit> unitList) {
+    public void attack (List<Unit> unitList) {
         for (Unit unit : unitList) {
             if (this.position.getX() == unit.position.getX() && this.position.getY() == unit.position.getY() && this.nr != unit.nr) {
                     if (this.speed > unit.speed) {
