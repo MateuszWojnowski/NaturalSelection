@@ -31,7 +31,7 @@ public class Simulation {
     public List moveAll (List <Unit> unitList) {
         for (Unit unit : unitList) {
             unit.move(this.mapWidth, this.mapLength);
-            unit.Attack(unitList);
+            unit.attack(unitList);
         }
 
         List <Unit> livingUnits = new ArrayList<>();
