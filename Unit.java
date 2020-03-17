@@ -8,10 +8,9 @@ public class Unit {
     private int firstHealth;
     private int health;
     private int speed;
-    private int x;
-    private int y;
     private int nr;
-    private boolean isAlive = true;
+    private boolean isAlive;
+    Position position;
 
     public Unit() {
         Random los = new Random();
@@ -19,8 +18,8 @@ public class Unit {
         this.firstHealth = los.nextInt(5) + 1;
         this.health = this.firstHealth;
         this.speed = los.nextInt(5) + 1;
-        this.x = los.nextInt(5) + 1;
-        this.y = los.nextInt(5) + 1;
+        this.isAlive = true;
+        this.position = new Position();
     }
 
     public int getStrong () {
@@ -57,32 +56,32 @@ public class Unit {
         for (int distance = losDistance; distance>0; distance--) {
             switch (los.nextInt(4) + 1) {
                 case 1:
-                    if (this.y >= mapWidth) {
-                        this.y = this.y - 1;
+                    if (this.position.getY() >= mapWidth) {
+                        this.position.setY(this.position.getY() - 1);
                     } else {
-                        this.y = this.y + 1;
+                        this.position.setY(this.position.getY() + 1);
                     }
 
                     break;
                 case 2:
-                    if (this.x >= mapLength) {
-                        this.x = this.x - 1;
+                    if (this.position.getX() >= mapLength) {
+                        this.position.setX(this.position.getX() - 1);
                     } else {
-                        this.x = this.x + 1;
+                        this.position.setX(this.position.getX() + 1);
                     }
                     break;
                 case 3:
-                    if (this.y <= 1) {
-                        this.y = this.y + 1;
+                    if (this.position.getY() <= 1) {
+                        this.position.setY(this.position.getY() + 1);
                     } else {
-                        this.y = this.y - 1;
+                        this.position.setY(this.position.getY() - 1);
                     }
                     break;
                 case 4:
-                    if (this.x <= 1) {
-                        this.x = this.x + 1;
+                    if (this.position.getX() <= 1) {
+                        this.position.setX(this.position.getX() + 1);
                     }
-                    this.x = this.x - 1;
+                    this.position.setX(this.position.getX() - 1);
                     break;
             }
         }
@@ -90,7 +89,7 @@ public class Unit {
 
     public void Attack (List<Unit> unitList) {
         for (int i = 0; i<unitList.size (); i++) {
-            if (this.x == unitList.get(i).x && this.y == unitList.get(i).y && this.nr != unitList.get(i).nr) {
+            if (this.position.getX() == unitList.get(i).position.getX() && this.position.getY() == unitList.get(i).position.getY() && this.nr != unitList.get(i).nr) {
                     if (this.speed > unitList.get(i).speed) {
                         unitList.get(i).health = unitList.get(i).health - this.strong;
                         System.out.println("jednostka nr "+this.nr+" zaatakowala jednostke nr "+unitList.get(i).nr);
