@@ -47,7 +47,7 @@ public class Simulation {
     public void autostartMoveAll (List <Unit> unitList) {
         List<Unit> livingUnits = new Simulation (this.mapWidth, this.mapLength, this.numberUnits).moveAll(unitList);
         while (livingUnits.size() > 1) {
-            livingUnits = new Simulation(this.mapWidth, this.mapLength, this.numberUnits).moveAll(unitList);
+            livingUnits = moveAll(unitList);
         }
         System.out.println("zostala jednostka nr "+livingUnits.get(0).getNr()+", o parametrach: " +
                 "sila-"+ livingUnits.get(0).getStrong()+", poczatkowe zdrowie-"+
