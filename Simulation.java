@@ -1,5 +1,5 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Simulation {
     private int mapWidth; // szerokosc
@@ -53,4 +53,3 @@ public class Simulation {
                 livingUnits.get(0).getFirstHealth()+", predkosc-"+livingUnits.get(0).getSpeed());
     }
 }
-
